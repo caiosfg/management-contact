@@ -21,4 +21,7 @@
 
 1. Execute o comando abaixo:
 
-> `npm run dev `
+   > `npm run dev `
+
+2. Execute as migrations para criação das tabelas:
+   > `npx prisma migrate dev`
