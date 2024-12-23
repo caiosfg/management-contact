@@ -15,6 +15,7 @@ import { RemoveGroupController } from "./controllers/group/RemoveGroupController
 import { CreateContactController } from "./controllers/contact/CreateContactController";
 import { EditContactController } from "./controllers/contact/EditContactController";
 import { ListContactByGroupController } from "./controllers/contact/ListContactByGroupController";
+import { ListContactController } from "./controllers/contact/ListContactController";
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -46,6 +47,7 @@ router.get(
   isAuthenticated,
   new ListContactByGroupController().handle
 );
+router.get("/contacts", isAuthenticated, new ListContactController().handle);
 router.post(
   "/contact",
   isAuthenticated,
