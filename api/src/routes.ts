@@ -5,6 +5,7 @@ import { isAuthenticated } from "./middlewares/isAuthenticated";
 import { DetailUserController } from "./controllers/user/DetailUserController";
 import { RemoveUserController } from "./controllers/user/RemoveUserController";
 import { CreateGroupController } from "./controllers/group/CreateGroupController";
+import { EditGroupController } from "./controllers/group/EditGroupController";
 
 const router = Router();
 
@@ -20,5 +21,6 @@ router.delete("/user/remove", new RemoveUserController().handle);
 
 // Group
 router.post("/group", isAuthenticated, new CreateGroupController().handle);
+router.put("/group/edit", isAuthenticated, new EditGroupController().handle);
 
 export { router };
