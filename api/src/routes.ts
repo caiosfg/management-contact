@@ -1,4 +1,7 @@
 import { Router, Request, Response } from "express";
+import multer from "multer";
+import uploadConfig from "./config/multer";
+
 import { CreateUserController } from "./controllers/user/CreateUserController";
 import { AuthUserController } from "./controllers/user/AuthUserController";
 import { isAuthenticated } from "./middlewares/isAuthenticated";
@@ -11,6 +14,7 @@ import { ListGroupController } from "./controllers/group/ListGroupController";
 import { RemoveGroupController } from "./controllers/group/RemoveGroupController";
 
 const router = Router();
+const upload = multer(uploadConfig.upload("./tmp"));
 
 router.get("/test", (request: Request, response: Response) => {
   return response.json({ ok: true });
