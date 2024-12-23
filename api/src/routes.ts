@@ -8,6 +8,7 @@ import { CreateGroupController } from "./controllers/group/CreateGroupController
 import { EditGroupController } from "./controllers/group/EditGroupController";
 import { ListUserController } from "./controllers/user/ListUserController";
 import { ListGroupController } from "./controllers/group/ListGroupController";
+import { RemoveGroupController } from "./controllers/group/RemoveGroupController";
 
 const router = Router();
 
@@ -26,5 +27,10 @@ router.delete("/user/remove", new RemoveUserController().handle);
 router.get("/group/all", isAuthenticated, new ListGroupController().handle);
 router.post("/group", isAuthenticated, new CreateGroupController().handle);
 router.put("/group/edit", isAuthenticated, new EditGroupController().handle);
+router.delete(
+  "/group/remove",
+  isAuthenticated,
+  new RemoveGroupController().handle
+);
 
 export { router };
