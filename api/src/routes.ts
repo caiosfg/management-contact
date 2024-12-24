@@ -16,6 +16,7 @@ import { CreateContactController } from "./controllers/contact/CreateContactCont
 import { EditContactController } from "./controllers/contact/EditContactController";
 import { ListContactByGroupController } from "./controllers/contact/ListContactByGroupController";
 import { ListContactController } from "./controllers/contact/ListContactController";
+import { RemoveContactController } from "./controllers/contact/RemoveContactController";
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -59,5 +60,10 @@ router.put(
   isAuthenticated,
   upload.single("image"),
   new EditContactController().handle
+);
+router.delete(
+  "/contact/remove",
+  isAuthenticated,
+  new RemoveContactController().handle
 );
 export { router };
