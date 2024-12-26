@@ -195,6 +195,89 @@
                     }
                 }
             }
+        },
+        "/v1/group/all": {
+            "get": {
+                "description": "get all groups",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "reponses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetAllGroups"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/group/remove?group_id={group_id}": {
+            "delete": {
+                "description": "delete group by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "group_id",
+                        "in": "path",
+                        "description": "id of group",
+                        "required": "true",
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "reponses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDeleteGroup"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/contact": {
+            "post": {
+                "description": "Create contact",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "data send to create contact",
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestCreateContact"
+                            }
+                        }
+                    }
+                },
+                "reponses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseCreateContact"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -273,6 +356,65 @@
                         "type": "string"
                     },
                     "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseGetAllGroups": {
+                "type": "array",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseDeleteGroup": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "RequestCreateContact": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "cellphone": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "group_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseCreateContact": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "cellphone": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "group_id": {
                         "type": "string"
                     }
                 }
