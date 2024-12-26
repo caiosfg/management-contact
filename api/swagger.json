@@ -92,6 +92,109 @@
                     }
                 }
             }
+        },
+        "/v1/user/remove?user_id={user_id}": {
+            "delete": {
+                "description": "delete user by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "id of user",
+                        "required": "true",
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "reponses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDeleteUser"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/group": {
+            "post": {
+                "description": "Create group",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "data send to create group",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestCreateGroup"
+                            }
+                        }
+                    }
+                },
+                "reponses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseCreateGroup"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/group/edit?group_id={group_id}": {
+            "put": {
+                "description": "Edit group",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "group_id",
+                        "in": "path",
+                        "description": "id of group",
+                        "required": "true",
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "requestBody": {
+                    "description": "data send to Edit group",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestCreateGroup"
+                            }
+                        }
+                    }
+                },
+                "reponses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseCreateGroup"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -151,8 +254,37 @@
                         "type": "string"
                     }
                 }
+            },
+            "ResponseDeleteUser": {
+                "type": "object"
+            },
+            "RequestCreateGroup": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseCreateGroup": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                }
             }
         },
-        "securitySchemes": {}
+        "securitySchemes": {
+            "bearerAuth": {
+                "description": "Authorization using JWT",
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
     }
 }
