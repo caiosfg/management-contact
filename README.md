@@ -10,18 +10,26 @@
     <img src="https://img.shields.io/badge/nodedotjs-7F66B3?logo=nodedotjs"/>
     <img src="https://img.shields.io/badge/express-blue?logo=express"/>
     <img src="https://img.shields.io/badge/prisma-C40475?logo=prisma"/>
+    <img src="https://img.shields.io/badge/docker-5742f5?logo=docker"/>
 </p>
 
 ### Structure
 
 - [x] Express ;
 - [x] Prisma ;
+- [x] Docker ;
 
 ### Requirements
 
-1. Execute o comando abaixo:
+1. Copie o `.env_example` e renomeie para `.env`;
 
-   > `npm run dev `
+2. Execute o comando abaixo:
 
-2. Execute as migrations para criação das tabelas:
+   > `docker compose up`
+
+3. Execute as migrations para criação das tabelas, dentro do container da api:
+
    > `npx prisma migrate dev`
+
+4. a documentação da api se encontra em:
+   > `http://localhost:3333/api-docs/`

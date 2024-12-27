@@ -11,4 +11,8 @@ RUN npm install
 
 COPY . .
 
-CMD [“npm”, “start”]
+EXPOSE 3333
+
+RUN apt-get update -y && apt-get install -y openssl
+
+CMD ["npm", "run", "dev"]
