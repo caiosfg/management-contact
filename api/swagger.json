@@ -278,6 +278,120 @@
                     }
                 }
             }
+        },
+        "/v1/contact/edit": {
+            "put": {
+                "description": "edit contact",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "data send to edit contact",
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestEditContact"
+                            }
+                        }
+                    }
+                },
+                "reponses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDeleteUser"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/contact?contact_id={contact_id}": {
+            "get": {
+                "description": "search contact by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "contact_id",
+                        "in": "path",
+                        "description": "id of contact",
+                        "required": "true",
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "reponses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseCreateContact"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/contacts": {
+            "get": {
+                "description": "all contacts",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "reponses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseAllContacts"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/contact/remove?contact_id={contact_id}": {
+            "delete": {
+                "description": "delete contact by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "contact_id",
+                        "in": "path",
+                        "description": "id of contact",
+                        "required": "true",
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "reponses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseCreateContact"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -415,6 +529,40 @@
                         "type": "string"
                     },
                     "group_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "RequestEditContact": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "cellphone": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "group_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseAllContacts": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "cellphone": {
                         "type": "string"
                     }
                 }
